@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>レシピ検索</title>
+    <meta content="foodSearch" name="page-name">
+<!--    <th:block th:replace="_common::header"></th:block>-->
+</head>
+<body class="body">
+<!--<header th:replace="header::navbar"></header>-->
+<main class="container mx-auto main">
+    <!-- 画面名表示 -->
+    <header class="row mb-3">
+        <h1>レシピ検索</h1>
+    </header>
+    <!-- メッセージ表示 -->
+    <section class="row justify-content-center">
+        <div class="col-12 alert alert-success" id="msg" role="alert" th:if="${msg != null}">
+            <th:block th:text="${msg}"></th:block>
+        </div>
+        <div class="col-12 alert alert-danger" id="errorMsg" role="alert" th:if="${errorMsg != null}">
+            <th:block th:text="${errorMsg}"></th:block>
+        </div>
+    </section>
+    <!-- 入力フィールド表示 -->
+    <section class="row col-12">
+        <form method="post" th:action="@{/food/add}" th:object="${food}">
+            <div class="mb-3">
+                <label class="form-label" for="material">材料名：</label>
+                <input class="form-control" id="material" name="material" placeholder="材料名" th:value="${material}"
+                       type="text">
+                <button class="btn btn-success float-end" id="addBtn" type="submit">追加</button>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success float-end" id="searchBtn" type="submit">検索</button>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>
